@@ -110,10 +110,10 @@ public class RPIUIDevice {
         try {
             // Create configuration using I2C device identification (channel and 
             // address)
-            _DeviceConfig = new I2CDeviceConfig(RPIUI_I2C_CHANNEL, 
-                                                RPIUI_I2C_ADDRESS,  
-                                                I2CDeviceConfig.DEFAULT, 
-                                                I2CDeviceConfig.DEFAULT);
+            _DeviceConfig = new I2CDeviceConfig.Builder()
+                .setControllerNumber(RPIUI_I2C_CHANNEL)
+                .setAddress(RPIUI_I2C_ADDRESS, I2CDeviceConfig.ADDR_SIZE_7)
+                .build();
             // Open the device
             _Device = DeviceManager.open(_DeviceConfig);
 
